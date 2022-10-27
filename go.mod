@@ -1,4 +1,4 @@
-module github.com/jackyzha0/hugo-obsidian
+module github.com/Nickardson/hugo-obsidian
 
 go 1.16
 
