@@ -59,11 +59,17 @@ func walk(root, ext string, index bool, ignorePaths map[string]struct{}) (res []
 				if !matter.Draft {
 					info, _ := os.Stat(s)
 					source := processSource(trim(s, root, ".md"))
+					
+					var final_title string
+					final_title = matter.Title
+					if final_title == "" {
+						final_title = strings.TrimSuffix(d.Name(), ".md")
+					}
 
 					// add to content and link index
 					i[source] = Content{
 						LastModified: info.ModTime(),
-						Title:        matter.Title,
+						Title:        final_title,
 						Content:      body,
 					}
 					res = append(res, parse(s, root)...)
